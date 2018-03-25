@@ -1,8 +1,10 @@
-.PHONY: test
-test:
+.PHONY: _test
+_test:
 	flake8 .
 	coverage run tests.py
-	coverage-badge -qfo coverage.svg
+
+.PHONY: report
+report: _test
 	coverage report
 
 .PHONY: sdist bdist_wheel
@@ -10,7 +12,7 @@ sdist bdist_wheel: test
 	python setup.py $@
 
 .PHONY: upload
-upload: test clean sdist bdist_wheel
+upload: _test clean sdist bdist_wheel
 	twine upload $(twine_options) dist/*
 
 .PHONY: upload_test
