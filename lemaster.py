@@ -10,7 +10,7 @@ from argparse import ArgumentParser as _ArgumentParser
 from telegram.ext import CommandHandler as _CommandHandler
 
 
-_parser = _ArgumentParser(add_help=False)
+_parser = _ArgumentParser(add_help=False, fromfile_prefix_chars='@')
 _parser.add_argument('-m', '--master-id', required=True)
 _args, _ = _parser.parse_known_args()
 master_id = _args.master_id
